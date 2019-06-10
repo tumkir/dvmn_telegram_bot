@@ -5,7 +5,7 @@ import telegram
 
 
 def make_request(timestamp):
-    headers = {'Authorization': os.environ('token')}
+    headers = {'Authorization': os.environ['token']}
     parameters = {'timestamp': timestamp}
     response = requests.get('https://dvmn.org/api/long_polling/', headers=headers, params=parameters)
     response.raise_for_status()
@@ -22,8 +22,8 @@ def compose_message_text(attempts_info):
 
 
 def main():
-    telegram_token = os.environ('bot_token')
-    chat_id = os.environ('chat_id')
+    telegram_token = os.environ['bot_token']
+    chat_id = os.environ['chat_id']
     bot = telegram.Bot(token=telegram_token)
     timestamp = time.time()
     while True:
