@@ -2,6 +2,7 @@ import os
 import time
 import requests
 import telegram
+import logging
 
 
 def make_request(timestamp):
@@ -25,6 +26,7 @@ def main():
     telegram_token = os.environ['bot_token']
     chat_id = os.environ['chat_id']
     bot = telegram.Bot(token=telegram_token)
+    logging.warning('Бот запущен')
     timestamp = time.time()
     while True:
         try:
