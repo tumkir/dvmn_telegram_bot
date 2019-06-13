@@ -26,8 +26,18 @@ def main():
     telegram_token = os.environ['bot_token']
     chat_id = os.environ['chat_id']
     bot = telegram.Bot(token=telegram_token)
-    logging.warning('Бот запущен')
     timestamp = time.time()
+
+    class MyLogsHandler(logging.Handler):
+        def emit(self, record):
+            log_entry = self.format(record)
+            bot.send_message(chat_id=chat_id, text=log_entry)
+
+    logger = logging.getLogger('Bot_loger')
+    logger.setLevel(logging.WARNING)
+    logger.addHandler(MyLogsHandler())
+    logger.warning('Бот запущен')
+
     while True:
         try:
             response = make_request(timestamp)
@@ -38,7 +48,7 @@ def main():
             else:
                 timestamp = response['timestamp_to_request']
         except (requests.exceptions.HTTPError, requests.exceptions.Timeout):
-            bot.send_message(chat_id=chat_id, text='Не удалось узнать статус проверки')
+            logger.exception('Не удалось узнать статус проверки:\n\n')
             time.sleep(3600)
             continue
 
