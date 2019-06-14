@@ -8,8 +8,8 @@
 * Форкните данный репозиторий
 
 В разделе **Config Vars** на вкладке **Settings** вашего приложения пропишите:
-- Токен бота. Необходимо создать бота и получить токен у [@botfather](t-do.ru/botfather)
-- Ваш chat_id в телеграме. Можно узнать у бота [@userinfobot](t-do.ru/userinfobot)
+- Токен бота. Необходимо создать бота и получить токен у [@botfather](https://t-do.ru/botfather)
+- Ваш chat_id в телеграме. Можно узнать у бота [@userinfobot](https://t-do.ru/userinfobot)
 - [Токен от dvmn](https://dvmn.org/api/docs/)
 
 ![config vars](https://raw.githubusercontent.com/tumkir/dvmn_telegram_bot/master/image/config_vars.png)
