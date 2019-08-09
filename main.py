@@ -3,10 +3,10 @@ import time
 import requests
 import telegram
 import logging
-
+from dotenv import load_dotenv
 
 def make_request(timestamp):
-    headers = {'Authorization': os.environ['token']}
+    headers = {'Authorization': os.getenv('token')}
     parameters = {'timestamp': timestamp}
     response = requests.get('https://dvmn.org/api/long_polling/', headers=headers, params=parameters)
     response.raise_for_status()
@@ -23,8 +23,8 @@ def compose_message_text(attempts_info):
 
 
 def main():
-    telegram_token = os.environ['bot_token']
-    chat_id = os.environ['chat_id']
+    telegram_token = os.getenv('bot_token')
+    chat_id = os.getenv('chat_id')
     bot = telegram.Bot(token=telegram_token)
     timestamp = time.time()
 
@@ -54,4 +54,5 @@ def main():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     main()
